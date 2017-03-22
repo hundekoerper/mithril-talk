@@ -1,0 +1,14 @@
+{
+  "name": "mithril-talk-examples",
+  "version": "1.0.0",
+  "description": "coding examples for my mithril.js talk",
+  "main": "index.js",
+  "dependencies": {
+    "express": "4.15.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Daniel Bechler",
+  "license": "ISC"
+}
