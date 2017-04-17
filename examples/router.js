@@ -1,51 +1,36 @@
-const route1 = {
-  view() {
-    return m('div', [
-      m('nav', [
-        m('a', { href: '/#/route1' }, 'Route1'),
-        m('a', { href: '/#/route2' }, 'Route2'),
-        m('a', { href: '/#/route3' }, 'Route3')
-      ]),
-      m('main', [
-        m('h1', 'this is route 1')
-      ])
-    ]);
-  }
-};
+function navigationComponent(currentView) {
+  return {
+    view() {
+      return m('div', [
+        m('nav', [
+          m('a', { href: '/' }, 'Route1'),
+          m('a', { href: '/#/route2' }, 'Route2'),
+          m('a', { href: '/#/route3' }, 'Route3')
+        ]),
+        m('main', [
+          currentView()
+        ])
+      ]);
+    }
+  };
+}
 
-const route2 = {
-  view() {
-    return m('div', [
-      m('nav', [
-        m('a', { href: '/#/route1' }, 'Route1'),
-        m('a', { href: '/#/route2' }, 'Route2'),
-        m('a', { href: '/#/route3' }, 'Route3')
-      ]),
-      m('main', [
-        m('h1', 'this is route 3')
-      ])
-    ]);
-  }
-};
+function viewOne() {
+  return m('h1', `Hi, I'm View1`);
+}
 
-const route3 = {
-  view() {
-    return m('div', [
-      m('nav', [
-        m('a', { href: '/#/route1' }, 'Route1'),
-        m('a', { href: '/#/route2' }, 'Route2'),
-        m('a', { href: '/#/route3' }, 'Route3')
-      ]),
-      m('main', [
-        m('h1', 'this is route 2')
-      ])
-    ]);
-  }
-};
+function viewTwo() {
+  return m('h1', `I'm View2`);
+}
+
+function viewThree() {
+  return m('h1', `and I'm View3`);
+}
+
 
 m.route.prefix('#');
 m.route(document.body, '/', {
-  '/route1': route1,
-  '/route2': route2,
-  '/route3': route3
+  '/': navigationComponent(viewOne),
+  '/route2': navigationComponent(viewTwo),
+  '/route3': navigationComponent(viewThree)
 });
